@@ -1,0 +1,444 @@
+/* styles.css
+   Fixed: readable unselected buttons + hover/focus states
+   Tailwind-like utility subset used by Attendance PWA component.
+   Drop into project and import in index.js or in the component file.
+*/
+
+/* -------------------------
+   Colors and base settings
+   ------------------------- */
+:root {
+  --bg: #f8fafc; /* slate-50 */
+  --surface: #ffffff; /* white */
+  --muted: #6b7280; /* gray-500 */
+  --muted-2: #9ca3af; /* gray-400 */
+  --text: #0f172a; /* slate/near-black */
+  --accent: #4f46e5; /* indigo-600 */
+  --accent-600: #5b4df0; /* slightly lighter on hover */
+  --success: #16a34a; /* green-500 */
+  --danger: #ef4444; /* red-500 */
+  --card-shadow: 0 6px 20px rgba(2, 6, 23, 0.06);
+  --radius: 10px;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono",
+    "Liberation Mono", monospace;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial;
+}
+
+/* -------------------------
+   Page layout
+   ------------------------- */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.min-h-screen {
+  min-height: 100vh;
+}
+.p-6 {
+  padding: 1.5rem;
+}
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+.max-w-6xl {
+  max-width: 72rem;
+} /* ~1152px */
+.mb-6 {
+  margin-bottom: 1.5rem;
+}
+
+/* -------------------------
+   Flex / grid helpers
+   ------------------------- */
+.flex {
+  display: flex;
+}
+.items-center {
+  align-items: center;
+}
+.items-start {
+  align-items: flex-start;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.gap-2 {
+  gap: 0.5rem;
+}
+.gap-4 {
+  gap: 1rem;
+}
+.gap-6 {
+  gap: 1.5rem;
+}
+
+.grid {
+  display: grid;
+  gap: 1.5rem;
+}
+.grid-cols-1 {
+  grid-template-columns: 1fr;
+}
+@media (min-width: 768px) {
+  .md\:grid-cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .md\:col-span-2 {
+    grid-column: span 2 / span 2;
+  }
+}
+
+/* -------------------------
+   Cards, surfaces
+   ------------------------- */
+.bg-white {
+  background: var(--surface);
+}
+.bg-slate-100 {
+  background: #f1f5f9;
+} /* lighter block background */
+.rounded {
+  border-radius: var(--radius);
+}
+.shadow {
+  box-shadow: var(--card-shadow);
+}
+.border {
+  border: 1px solid #e6e9ef;
+}
+
+/* -------------------------
+   Typography
+   ------------------------- */
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 1.2;
+}
+.font-semibold {
+  font-weight: 600;
+}
+.text-lg {
+  font-size: 1.125rem;
+}
+.text-sm {
+  font-size: 0.875rem;
+}
+.text-xs {
+  font-size: 0.75rem;
+}
+.font-medium {
+  font-weight: 500;
+}
+.text-gray-400 {
+  color: var(--muted-2);
+}
+.text-gray-500 {
+  color: var(--muted);
+}
+.text-gray-700 {
+  color: #374151;
+}
+
+/* -------------------------
+   Buttons & inputs (fixed)
+   ------------------------- */
+/* Base button (no color forced) */
+.button,
+button {
+  cursor: pointer;
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: none;
+  transition: background-color 0.12s ease, transform 0.06s ease,
+    box-shadow 0.12s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Disabled */
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Variant: selected (filled) */
+.btn-selected {
+  background: var(--accent);
+  color: white;
+  box-shadow: 0 6px 18px rgba(79, 70, 229, 0.14);
+}
+.btn-selected:hover {
+  background: var(--accent-600);
+  transform: translateY(-1px);
+}
+.btn-selected:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.08);
+}
+
+/* Variant: unselected (white with border + readable text) */
+.btn-unselected {
+  background: #ffffff;
+  color: var(--text);
+  border: 1px solid #e6e9ef;
+  box-shadow: none;
+}
+.btn-unselected:hover {
+  background: #f8fafc;
+  transform: translateY(-1px);
+}
+.btn-unselected:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(16, 24, 40, 0.04);
+}
+
+/* small size helpers used in component */
+.px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+.py-1 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.py-2 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+/* color helpers kept */
+.bg-indigo-600 {
+  background: var(--accent);
+  color: white;
+}
+.text-white {
+  color: white;
+}
+.bg-green-500 {
+  background: var(--success);
+  color: white;
+}
+.bg-red-500 {
+  background: var(--danger);
+  color: white;
+}
+
+/* Inputs */
+input[type="text"],
+input[type="email"],
+input[type="number"],
+.input {
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid #e6e9ef;
+  outline: none;
+  font-size: 0.95rem;
+  background: white;
+  color: var(--text);
+}
+input[type="text"]:focus,
+.input:focus {
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.08);
+  border-color: rgba(79, 70, 229, 0.18);
+}
+
+/* utility widths */
+.w-48 {
+  width: 12rem;
+}
+.w-full {
+  width: 100%;
+}
+.block {
+  display: block;
+}
+
+/* tiny helper */
+.text-muted {
+  color: var(--muted-2);
+}
+
+/* -------------------------
+   Specific layout pieces
+   ------------------------- */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+}
+header h1 {
+  margin: 0;
+}
+
+/* teacher panel */
+.teacher-qr {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+/* canvas wrapper */
+canvas {
+  background: white;
+  border-radius: 8px;
+}
+
+/* dashboard panels */
+aside h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+.section-title {
+  font-size: 0.88rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.list-item {
+  padding: 0.4rem 0;
+  border-bottom: 1px dashed #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* small buttons used in list items */
+.small-btn {
+  padding: 0.28rem 0.45rem;
+  border-radius: 7px;
+  font-size: 0.78rem;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+.small-approve {
+  background: var(--success);
+}
+.small-reject {
+  background: var(--danger);
+}
+
+/* throbber / status chips */
+.status-chip {
+  display: inline-block;
+  padding: 0.18rem 0.45rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  color: white;
+}
+.status-present {
+  background: var(--success);
+}
+.status-pending {
+  background: #f59e0b;
+} /* amber-500 */
+.status-flagged {
+  background: var(--danger);
+}
+
+/* misc */
+.mt-1 {
+  margin-top: 0.25rem;
+}
+.mt-2 {
+  margin-top: 0.5rem;
+}
+.mt-4 {
+  margin-top: 1rem;
+}
+.mt-6 {
+  margin-top: 1.5rem;
+}
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+.text-xs-muted {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+/* list styles */
+ul.list-disc {
+  list-style-type: disc;
+  padding-left: 1.1rem;
+  margin: 0.25rem 0 0 0;
+}
+
+/* responsive tweaks */
+@media (max-width: 767px) {
+  .header-actions {
+    display: none;
+  }
+  .max-w-6xl {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* small helpers for forms in the UI */
+.form-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+.form-row label {
+  min-width: 80px;
+  color: var(--muted-2);
+  font-size: 0.9rem;
+}
+
+/* export button */
+button.export {
+  background: transparent;
+  border: 1px solid #e6e9ef;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+}
+
+/* loading / placeholder */
+.placeholder {
+  height: 1rem;
+  width: 6rem;
+  background: linear-gradient(90deg, #f3f4f6, #eceff7, #f3f4f6);
+  border-radius: 6px;
+  display: inline-block;
+}
+
+/* small code / monospaced */
+.code-inline {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  background: #f8fafc;
+  padding: 0.12rem 0.3rem;
+  border-radius: 6px;
+  color: #0b1220;
+}
+
+/* final touch: subtle card header */
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+  border-bottom: 1px solid #f3f4f6;
+  padding-bottom: 0.5rem;
+}
